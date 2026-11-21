@@ -1,0 +1,1632 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛 - 影像赛事平台_专业创作竞技与官方发布</title>
+<meta name="description" content="每日大赛官方网站是专注影像创作的赛事平台，汇聚每日命题挑战、创作者竞技与精品内容，为企业与创作者搭建值得信赖的内容生态。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Cpath d='M20 18h8v22h16v6H20z' fill='%23f59e0b'/%3E%3Ccircle cx='46' cy='22' r='6' fill='%2338bdf8'/%3E%3C/svg%3E">
+<style>
+:root{
+  --dly-bg:#0e131c;
+  --dly-bg-soft:#151c28;
+  --dly-card:#1a2230;
+  --dly-card-2:#202a3a;
+  --dly-line:rgba(148,163,184,.18);
+  --dly-text:#e6edf7;
+  --dly-muted:#93a2b8;
+  --dly-amber:#f59e0b;
+  --dly-amber-soft:rgba(245,158,11,.14);
+  --dly-cyan:#38bdf8;
+  --dly-cyan-soft:rgba(56,189,248,.14);
+  --dly-lime:#a3e635;
+  --dly-red:#fb7185;
+  --dly-radius:16px;
+  --dly-shadow:0 18px 44px -18px rgba(0,0,0,.75);
+  --dly-head-h:120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:132px}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--dly-bg);
+  color:var(--dly-text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+body.dly-modal-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+
+/* ============ 吸顶区 ============ */
+.dly-sticky-wrap{position:sticky;top:0;z-index:80}
+.dly-announce{
+  background:linear-gradient(90deg,#1b2436 0%,#243149 50%,#1b2436 100%);
+  border-bottom:1px solid var(--dly-line);
+  font-size:13px;
+  color:#cfd9e8;
+}
+.dly-announce-inner{
+  max-width:1240px;margin:0 auto;padding:8px 22px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.dly-announce-tag{
+  flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:.08em;
+  color:#0e131c;background:var(--dly-amber);padding:2px 8px;border-radius:4px;
+}
+.dly-announce-list{display:flex;gap:22px;flex-wrap:wrap;overflow:hidden}
+.dly-announce-list li{white-space:nowrap;color:#c2cee0}
+.dly-announce-list b{color:#fff;font-weight:600}
+.dly-announce-list .dly-new{color:var(--dly-cyan)}
+
+.dly-header{
+  background:rgba(14,19,28,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--dly-line);
+}
+.dly-header-inner{
+  max-width:1240px;margin:0 auto;padding:0 22px;
+  display:flex;align-items:center;gap:26px;height:64px;
+}
+.dly-logo{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.dly-logo-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(140deg,var(--dly-amber),#ef4444);
+  display:grid;place-items:center;font-weight:800;font-size:15px;color:#0b0f16;
+  box-shadow:0 6px 18px -6px rgba(245,158,11,.6);
+}
+.dly-logo-text{font-size:17px;font-weight:700;letter-spacing:.02em}
+.dly-logo-text small{display:block;font-size:10px;color:var(--dly-muted);letter-spacing:.22em;font-weight:500}
+.dly-nav{display:flex;gap:4px;flex:1 1 auto;flex-wrap:wrap}
+.dly-nav a{
+  padding:8px 13px;border-radius:9px;font-size:14px;color:#b6c2d4;transition:.2s;
+}
+.dly-nav a:hover,.dly-nav a.dly-active{color:#fff;background:rgba(255,255,255,.06)}
+.dly-nav a.dly-active{box-shadow:inset 0 -2px 0 var(--dly-amber)}
+.dly-head-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.dly-search{position:relative;display:flex;align-items:center}
+.dly-search input{
+  width:206px;padding:8px 34px 8px 32px;border-radius:9px;
+  border:1px solid var(--dly-line);background:#111825;color:var(--dly-text);
+  font-size:13px;outline:none;transition:.2s;
+}
+.dly-search input:focus{border-color:var(--dly-cyan);box-shadow:0 0 0 3px var(--dly-cyan-soft);width:236px}
+.dly-search .dly-search-ico{position:absolute;left:10px;font-size:13px;color:var(--dly-muted);pointer-events:none}
+.dly-search-btn{position:absolute;right:5px;font-size:12px;color:var(--dly-amber);padding:3px 6px;border-radius:6px}
+.dly-btn{
+  display:inline-flex;align-items:center;gap:7px;justify-content:center;
+  padding:9px 18px;border-radius:10px;font-size:14px;font-weight:600;transition:.2s;
+}
+.dly-btn-primary{background:linear-gradient(135deg,var(--dly-amber),#f97316);color:#141000}
+.dly-btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px -10px rgba(245,158,11,.85)}
+.dly-btn-ghost{border:1px solid var(--dly-line);color:#cfd9e8}
+.dly-btn-ghost:hover{border-color:var(--dly-cyan);color:#fff}
+.dly-burger{display:none;font-size:20px;padding:6px 10px;border-radius:8px;border:1px solid var(--dly-line)}
+
+/* ============ 通用容器 ============ */
+.dly-container{max-width:1240px;margin:0 auto;padding:0 22px}
+.dly-section{padding:66px 0}
+.dly-section-alt{background:var(--dly-bg-soft);border-top:1px solid var(--dly-line);border-bottom:1px solid var(--dly-line)}
+.dly-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.dly-sec-head h2{font-size:27px;letter-spacing:.01em;line-height:1.3}
+.dly-sec-head h2 span{color:var(--dly-amber)}
+.dly-sec-head p{color:var(--dly-muted);font-size:14px;max-width:520px}
+.dly-kicker{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+  letter-spacing:.16em;color:var(--dly-cyan);text-transform:uppercase;margin-bottom:10px;
+}
+.dly-kicker::before{content:"";width:22px;height:2px;background:var(--dly-cyan);border-radius:2px}
+
+/* ============ 首屏 ============ */
+.dly-hero{position:relative;overflow:hidden;padding:56px 0 62px}
+.dly-hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(760px 340px at 82% -6%,rgba(56,189,248,.16),transparent 62%),
+    radial-gradient(620px 300px at 6% 12%,rgba(245,158,11,.13),transparent 60%);
+  pointer-events:none;
+}
+.dly-hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.dly-hero h1{font-size:clamp(38px,5vw,56px);line-height:1.08;letter-spacing:.01em;margin-bottom:14px}
+.dly-hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--dly-amber),#fb7185 60%,var(--dly-cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.dly-hero-sub{font-size:15px;color:#c9d5e5;margin-bottom:18px}
+.dly-hero-sub strong{color:var(--dly-amber)}
+.dly-hero-badge{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;
+  padding:5px 12px;border-radius:999px;font-size:12px;letter-spacing:.06em;
+  border:1px solid rgba(56,189,248,.4);background:var(--dly-cyan-soft);color:#bfe9ff;
+}
+.dly-hero-badge i{width:6px;height:6px;border-radius:50%;background:var(--dly-lime);box-shadow:0 0 10px var(--dly-lime)}
+.dly-hero-desc{font-size:14.5px;color:var(--dly-muted);line-height:1.9;margin-bottom:24px}
+.dly-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.dly-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:520px}
+.dly-stat{
+  background:var(--dly-card);border:1px solid var(--dly-line);border-radius:12px;
+  padding:13px 14px;
+}
+.dly-stat b{display:block;font-size:22px;color:#fff;letter-spacing:.01em}
+.dly-stat b i{font-style:normal;font-size:13px;color:var(--dly-amber);margin-left:2px}
+.dly-stat span{font-size:12px;color:var(--dly-muted)}
+
+.dly-hero-visual{position:relative}
+.dly-hero-frame{
+  position:relative;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(148,163,184,.28);
+  box-shadow:var(--dly-shadow);
+  aspect-ratio:16/10;
+  background:#0b111b;
+}
+.dly-hero-frame img{width:100%;height:100%;object-fit:cover}
+.dly-hero-frame .dly-hero-live{
+  position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:7px;
+  padding:5px 11px;border-radius:999px;background:rgba(10,14,22,.72);
+  font-size:12px;color:#fff;backdrop-filter:blur(6px);
+}
+.dly-hero-frame .dly-hero-live i{width:7px;height:7px;border-radius:50%;background:var(--dly-red);animation:dly-pulse 1.6s infinite}
+@keyframes dly-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.dly-hero-caption{
+  position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;
+  background:linear-gradient(transparent,rgba(6,10,18,.92));
+  font-size:14px;color:#e9f0fa;
+}
+.dly-hero-caption small{display:block;color:#9fb0c7;font-size:12px;margin-top:3px}
+.dly-hero-mini{
+  position:absolute;right:-12px;bottom:-22px;width:min(58%,250px);
+  border-radius:14px;overflow:hidden;border:1px solid rgba(148,163,184,.3);
+  box-shadow:0 18px 40px -16px rgba(0,0,0,.9);background:#0b111b;
+}
+.dly-hero-mini img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.dly-hero-mini p{font-size:12px;padding:8px 11px;color:#cfd9e8}
+
+/* ============ 关键词深度解析 ============ */
+.dly-about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:38px;align-items:start}
+.dly-about-quote{
+  border-radius:var(--dly-radius);padding:26px;border:1px solid var(--dly-line);
+  background:
+    linear-gradient(160deg,rgba(245,158,11,.12),rgba(56,189,248,.08) 70%),
+    var(--dly-card);
+  position:sticky;top:172px;
+}
+.dly-about-quote h3{font-size:19px;margin-bottom:12px;color:#fff}
+.dly-about-quote p{font-size:14px;color:#bcc9db;line-height:1.95}
+.dly-about-quote .dly-quote-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dly-quote-tags span{
+  font-size:12px;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--dly-line);color:#c8d4e6;background:rgba(255,255,255,.03);
+}
+.dly-article p{font-size:14.5px;color:#b9c6d8;line-height:2;margin-bottom:16px;text-align:justify}
+.dly-article h3{font-size:18px;color:#fff;margin:26px 0 10px;padding-left:12px;border-left:3px solid var(--dly-amber)}
+.dly-article h3:first-child{margin-top:0}
+.dly-article strong{color:var(--dly-amber);font-weight:600}
+.dly-article .dly-inline-tag{color:var(--dly-cyan)}
+
+/* ============ 焦点内容 ============ */
+.dly-focus-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+.dly-focus-main{
+  position:relative;border-radius:var(--dly-radius);overflow:hidden;
+  border:1px solid var(--dly-line);min-height:340px;display:flex;align-items:flex-end;
+  transition:.3s;
+}
+.dly-focus-main:hover{border-color:rgba(245,158,11,.5);transform:translateY(-3px)}
+.dly-focus-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dly-focus-main .dly-focus-body{
+  position:relative;width:100%;padding:64px 22px 20px;
+  background:linear-gradient(transparent,rgba(6,10,18,.94) 58%);
+}
+.dly-tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;
+  padding:3px 9px;border-radius:5px;background:var(--dly-amber-soft);color:var(--dly-amber);
+  border:1px solid rgba(245,158,11,.3);margin-bottom:9px;
+}
+.dly-tag-cyan{background:var(--dly-cyan-soft);color:var(--dly-cyan);border-color:rgba(56,189,248,.3)}
+.dly-tag-lime{background:rgba(163,230,53,.12);color:var(--dly-lime);border-color:rgba(163,230,53,.3)}
+.dly-focus-main h3{font-size:22px;line-height:1.35;color:#fff;margin-bottom:8px}
+.dly-focus-main p{font-size:13.5px;color:#b7c4d6}
+.dly-focus-side{display:grid;gap:14px}
+.dly-focus-item{
+  display:grid;grid-template-columns:132px 1fr;gap:14px;padding:11px;
+  border-radius:13px;border:1px solid var(--dly-line);background:var(--dly-card);
+  transition:.25s;align-items:center;
+}
+.dly-focus-item:hover{border-color:rgba(56,189,248,.45);background:var(--dly-card-2)}
+.dly-focus-item .dly-focus-thumb{border-radius:9px;overflow:hidden;aspect-ratio:16/9;position:relative}
+.dly-focus-item .dly-focus-thumb img{width:100%;height:100%;object-fit:cover}
+.dly-focus-item h4{font-size:14.5px;line-height:1.45;margin-bottom:5px;color:#eaf1fb}
+.dly-focus-item small{font-size:12px;color:var(--dly-muted)}
+.dly-focus-item .dly-focus-meta{display:flex;gap:10px;font-size:11.5px;color:var(--dly-muted);margin-top:6px}
+.dly-play-dot{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:26px;height:26px;border-radius:50%;background:rgba(245,158,11,.92);
+  display:grid;place-items:center;font-size:10px;color:#141000;
+}
+
+/* ============ 视频流 ============ */
+.dly-filter-bar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}
+.dly-chip{
+  font-size:13px;padding:6px 15px;border-radius:999px;border:1px solid var(--dly-line);
+  color:#b4c2d5;transition:.2s;background:transparent;
+}
+.dly-chip:hover{color:#fff;border-color:var(--dly-cyan)}
+.dly-chip.dly-on{background:var(--dly-amber);color:#151000;border-color:var(--dly-amber);font-weight:700}
+.dly-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dly-card{
+  border-radius:var(--dly-radius);overflow:hidden;border:1px solid var(--dly-line);
+  background:var(--dly-card);transition:.28s;display:flex;flex-direction:column;
+}
+.dly-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,.45);box-shadow:var(--dly-shadow)}
+.dly-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b111b}
+.dly-thumb img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.dly-card:hover .dly-thumb img{transform:scale(1.045)}
+.dly-thumb .dly-dur{
+  position:absolute;right:9px;bottom:9px;font-size:11px;padding:2px 6px;border-radius:5px;
+  background:rgba(6,10,18,.8);color:#dbe5f2;
+}
+.dly-thumb .dly-thumb-tag{
+  position:absolute;left:9px;top:9px;font-size:11px;padding:2px 8px;border-radius:5px;
+  background:rgba(245,158,11,.92);color:#151000;font-weight:700;
+}
+.dly-card-body{padding:15px 16px 14px;display:flex;flex-direction:column;gap:9px;flex:1}
+.dly-card-body h3{font-size:15.5px;line-height:1.5;color:#eef4fc}
+.dly-card-body p{font-size:12.8px;color:var(--dly-muted);line-height:1.65}
+.dly-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:9px;border-top:1px dashed var(--dly-line)}
+.dly-author-mini{display:flex;align-items:center;gap:7px;font-size:12px;color:#c1cddd}
+.dly-avatar{
+  width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:700;color:#0b1018;flex:0 0 auto;
+}
+.dly-ops{display:flex;gap:6px}
+.dly-op{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--dly-muted);
+  padding:3px 7px;border-radius:6px;transition:.2s;
+}
+.dly-op:hover{background:rgba(255,255,255,.06);color:#fff}
+.dly-op.dly-liked{color:var(--dly-red)}
+.dly-op.dly-faved{color:var(--dly-amber)}
+
+/* ============ 专题 ============ */
+.dly-topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dly-topic{
+  border-radius:14px;overflow:hidden;border:1px solid var(--dly-line);
+  background:var(--dly-card);transition:.26s;position:relative;
+}
+.dly-topic:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.5)}
+.dly-topic img{aspect-ratio:4/5;width:100%;object-fit:cover}
+.dly-topic-info{padding:13px 14px 15px}
+.dly-topic-info h3{font-size:15px;margin-bottom:6px;color:#eef4fb}
+.dly-topic-info p{font-size:12.5px;color:var(--dly-muted);line-height:1.6}
+.dly-topic-status{
+  display:inline-flex;align-items:center;gap:6px;margin-top:9px;
+  font-size:11.5px;color:var(--dly-lime);
+}
+.dly-topic-status i{width:6px;height:6px;border-radius:50%;background:var(--dly-lime)}
+
+/* ============ 创作者 ============ */
+.dly-creator-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dly-creator{
+  border:1px solid var(--dly-line);border-radius:14px;background:var(--dly-card);
+  padding:19px;transition:.26s;display:flex;gap:14px;align-items:flex-start;
+}
+.dly-creator:hover{border-color:rgba(245,158,11,.5);background:var(--dly-card-2)}
+.dly-creator-av{
+  width:52px;height:52px;border-radius:15px;flex:0 0 auto;
+  display:grid;place-items:center;font-size:19px;font-weight:800;color:#0b1018;
+}
+.dly-creator h3{font-size:15.5px;margin-bottom:3px;color:#fff}
+.dly-creator .dly-creator-field{font-size:12px;color:var(--dly-cyan);margin-bottom:7px}
+.dly-creator p{font-size:12.5px;color:var(--dly-muted);line-height:1.65}
+.dly-creator-data{display:flex;gap:14px;margin-top:9px;font-size:12px;color:#b9c6d8}
+.dly-creator-data b{color:var(--dly-amber);font-weight:700}
+.dly-creator-btn{
+  margin-top:11px;font-size:12px;padding:5px 12px;border-radius:7px;
+  border:1px solid var(--dly-line);color:#cbd7e7;transition:.2s;
+}
+.dly-creator-btn:hover{border-color:var(--dly-amber);color:var(--dly-amber)}
+
+/* ============ 排行 + 评价 ============ */
+.dly-rank-cmt{display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;align-items:start}
+.dly-rank-list{display:grid;gap:10px}
+.dly-rank-item{
+  display:flex;align-items:center;gap:13px;padding:11px 14px;border-radius:11px;
+  border:1px solid var(--dly-line);background:var(--dly-card);transition:.2s;
+}
+.dly-rank-item:hover{background:var(--dly-card-2);transform:translateX(3px)}
+.dly-rank-no{
+  width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  font-size:13px;font-weight:800;flex:0 0 auto;background:rgba(255,255,255,.07);color:#cfd9e8;
+}
+.dly-rank-item:nth-child(1) .dly-rank-no{background:var(--dly-amber);color:#151000}
+.dly-rank-item:nth-child(2) .dly-rank-no{background:#d1d9e6;color:#151000}
+.dly-rank-item:nth-child(3) .dly-rank-no{background:#c07a45;color:#fff}
+.dly-rank-item h4{font-size:14px;color:#eaf1fb;line-height:1.4}
+.dly-rank-item small{font-size:11.5px;color:var(--dly-muted)}
+.dly-rank-score{margin-left:auto;font-size:12.5px;color:var(--dly-amber);font-weight:700;flex:0 0 auto}
+
+.dly-cmt-list{display:grid;gap:12px}
+.dly-cmt{
+  padding:14px 16px;border-radius:12px;border:1px solid var(--dly-line);
+  background:var(--dly-card);position:relative;
+}
+.dly-cmt-top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.dly-cmt-top b{font-size:13.5px;color:#eaf1fb}
+.dly-cmt-top span{font-size:11.5px;color:var(--dly-muted)}
+.dly-cmt-stars{margin-left:auto;font-size:11px;color:var(--dly-amber);letter-spacing:1px}
+.dly-cmt p{font-size:13px;color:#bcc9db;line-height:1.72}
+
+/* ============ 灵感工具 ============ */
+.dly-tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dly-tool{
+  border-radius:14px;padding:22px;border:1px solid var(--dly-line);
+  background:linear-gradient(165deg,var(--dly-card),rgba(56,189,248,.05));
+  transition:.26s;
+}
+.dly-tool:hover{border-color:rgba(163,230,53,.45);transform:translateY(-3px)}
+.dly-tool-ico{
+  width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  font-size:18px;margin-bottom:13px;background:var(--dly-amber-soft);color:var(--dly-amber);
+}
+.dly-tool h3{font-size:16px;margin-bottom:8px;color:#fff}
+.dly-tool p{font-size:13px;color:var(--dly-muted);line-height:1.72;margin-bottom:14px}
+.dly-tool button{
+  font-size:12.5px;font-weight:600;color:var(--dly-cyan);padding:5px 0;
+  border-bottom:1px dashed rgba(56,189,248,.5);
+}
+
+/* ============ 动态 / 合作 ============ */
+.dly-updates-partners{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+.dly-timeline{position:relative;padding-left:20px}
+.dly-timeline::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:2px;background:var(--dly-line)}
+.dly-update{position:relative;padding-bottom:20px}
+.dly-update::before{
+  content:"";position:absolute;left:-20px;top:8px;width:9px;height:9px;border-radius:50%;
+  background:var(--dly-amber);box-shadow:0 0 0 3px rgba(245,158,11,.18);
+}
+.dly-update time{font-size:12px;color:var(--dly-cyan);letter-spacing:.03em}
+.dly-update h4{font-size:14.5px;margin:4px 0 5px;color:#edf3fc}
+.dly-update p{font-size:13px;color:var(--dly-muted);line-height:1.7}
+.dly-partners{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dly-partner{
+  border:1px solid var(--dly-line);border-radius:11px;padding:16px;
+  font-size:13.5px;color:#c3d0e1;background:var(--dly-card);
+  display:flex;align-items:center;gap:10px;transition:.2s;
+}
+.dly-partner:hover{border-color:rgba(245,158,11,.45);color:#fff}
+.dly-partner i{
+  width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+  font-style:normal;font-size:12px;font-weight:800;color:#0b1018;flex:0 0 auto;
+}
+
+/* ============ FAQ ============ */
+.dly-faq{display:grid;gap:10px;max-width:900px;margin:0 auto}
+.dly-faq details{
+  border:1px solid var(--dly-line);border-radius:11px;background:var(--dly-card);
+  padding:0 17px;transition:.2s;
+}
+.dly-faq details[open]{border-color:rgba(56,189,248,.4);background:var(--dly-card-2)}
+.dly-faq summary{
+  list-style:none;cursor:pointer;padding:15px 0;font-size:14.5px;font-weight:600;
+  color:#e8effa;display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.dly-faq summary::-webkit-details-marker{display:none}
+.dly-faq summary::after{
+  content:"+";font-size:18px;color:var(--dly-amber);font-weight:400;transition:.25s;
+}
+.dly-faq details[open] summary::after{transform:rotate(45deg)}
+.dly-faq details p{font-size:13.5px;color:var(--dly-muted);line-height:1.8;padding:0 0 16px}
+
+/* ============ 投稿 / 联系 ============ */
+.dly-cta-band{
+  border-radius:20px;padding:44px 40px;
+  background:
+    radial-gradient(560px 220px at 88% 0%,rgba(56,189,248,.2),transparent 62%),
+    radial-gradient(480px 200px at 4% 100%,rgba(245,158,11,.18),transparent 60%),
+    linear-gradient(140deg,#18212f,#111823);
+  border:1px solid rgba(148,163,184,.22);
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+}
+.dly-cta-band h2{font-size:25px;line-height:1.35;margin-bottom:9px}
+.dly-cta-band p{font-size:14px;color:#b7c4d6;max-width:600px}
+.dly-cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============ 页脚 ============ */
+.dly-footer{background:#0a0f17;border-top:1px solid var(--dly-line);padding:52px 0 26px}
+.dly-footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:32px;margin-bottom:36px}
+.dly-footer h4{font-size:14px;color:#e9f1fb;margin-bottom:13px;letter-spacing:.04em}
+.dly-footer p,.dly-footer a{font-size:13px;color:var(--dly-muted);line-height:1.9}
+.dly-footer a:hover{color:var(--dly-amber)}
+.dly-footer ul li{margin-bottom:7px}
+.dly-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.dly-footer-bottom{
+  border-top:1px solid var(--dly-line);padding-top:20px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:12.5px;color:#7c8ca3;
+}
+
+/* ============ 搜索反馈 / toast / 回顶 ============ */
+.dly-search-tip{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:60;
+  background:#151d2a;border:1px solid var(--dly-line);border-radius:10px;
+  padding:9px;font-size:12.5px;color:#c2cee0;box-shadow:var(--dly-shadow);
+  display:none;
+}
+.dly-search-tip.dly-show{display:block}
+.dly-search-tip b{color:var(--dly-amber)}
+.dly-toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,22px);
+  background:#1d2735;border:1px solid rgba(245,158,11,.5);color:#fff;
+  padding:11px 20px;border-radius:11px;font-size:13.5px;z-index:200;
+  opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--dly-shadow);
+}
+.dly-toast.dly-show{opacity:1;transform:translate(-50%,0)}
+.dly-top{
+  position:fixed;right:24px;bottom:26px;width:44px;height:44px;border-radius:12px;
+  background:var(--dly-card-2);border:1px solid var(--dly-line);color:#dbe5f2;
+  font-size:17px;display:grid;place-items:center;z-index:120;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.dly-top.dly-show{opacity:1;pointer-events:auto}
+.dly-top:hover{border-color:var(--dly-amber);color:var(--dly-amber)}
+
+/* ============ 弹窗 ============ */
+.dly-modal-mask{
+  position:fixed;inset:0;background:rgba(5,9,15,.78);backdrop-filter:blur(4px);
+  z-index:300;display:none;align-items:center;justify-content:center;padding:20px;
+}
+.dly-modal-mask.dly-show{display:flex}
+.dly-modal{
+  width:min(520px,100%);background:#141c28;border:1px solid var(--dly-line);
+  border-radius:16px;padding:26px;box-shadow:var(--dly-shadow);
+  max-height:86vh;overflow:auto;
+}
+.dly-modal h3{font-size:19px;margin-bottom:8px;color:#fff}
+.dly-modal .dly-modal-sub{font-size:13px;color:var(--dly-muted);margin-bottom:18px}
+.dly-field{margin-bottom:13px}
+.dly-field label{display:block;font-size:12.5px;color:#aebcd0;margin-bottom:6px}
+.dly-field input,.dly-field textarea,.dly-field select{
+  width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--dly-line);
+  background:#0f1621;color:var(--dly-text);font-size:13.5px;outline:none;font-family:inherit;
+}
+.dly-field input:focus,.dly-field textarea:focus,.dly-field select:focus{border-color:var(--dly-cyan)}
+.dly-field textarea{resize:vertical;min-height:88px}
+.dly-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+
+@media (max-width:1080px){
+  .dly-hero-grid,.dly-about-grid,.dly-focus-grid,.dly-rank-cmt,.dly-updates-partners{grid-template-columns:1fr}
+  .dly-about-quote{position:static}
+  .dly-video-grid,.dly-creator-grid,.dly-tool-grid{grid-template-columns:repeat(2,1fr)}
+  .dly-topic-grid{grid-template-columns:repeat(2,1fr)}
+  .dly-footer-grid{grid-template-columns:1fr 1fr}
+  .dly-hero-mini{position:static;width:100%;margin-top:14px}
+  .dly-hero-frame{aspect-ratio:16/9}
+}
+@media (max-width:820px){
+  .dly-nav{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:#101722;border-bottom:1px solid var(--dly-line);
+    padding:10px 18px 16px;flex-direction:column;gap:2px;
+    box-shadow:var(--dly-shadow);
+  }
+  .dly-nav.dly-open{display:flex}
+  .dly-header-inner{position:relative;height:auto;padding:11px 18px;flex-wrap:wrap;gap:12px}
+  .dly-burger{display:block;margin-left:auto}
+  .dly-head-tools{order:3;width:100%}
+  .dly-search{width:100%}
+  .dly-search input,.dly-search input:focus{width:100%}
+  .dly-announce-list{font-size:12px;gap:14px}
+  html{scroll-padding-top:158px}
+}
+@media (max-width:620px){
+  .dly-video-grid,.dly-creator-grid,.dly-tool-grid,.dly-topic-grid,.dly-partners,.dly-footer-grid{grid-template-columns:1fr}
+  .dly-hero h1{font-size:34px}
+  .dly-hero-stats{grid-template-columns:1fr 1fr;max-width:100%}
+  .dly-focus-item{grid-template-columns:112px 1fr}
+  .dly-cta-band{padding:28px 22px}
+  .dly-section{padding:48px 0}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ===== 吸顶区：公告条 + 页头 ===== -->
+<div class="dly-sticky-wrap">
+  <div class="dly-announce">
+    <div class="dly-announce-inner">
+      <span class="dly-announce-tag">官方公告</span>
+      <ul class="dly-announce-list">
+        <li><span class="dly-new">NEW</span> 第 <b>248</b> 期命题「城市呼吸」已开放投稿，截止 11 月 24 日 22:00</li>
+        <li>年度「匠心影像榜」报名通道上线，共设 <b>12</b> 个赛道</li>
+        <li>创作者权益升级：新增原创声明与作品溯源功能</li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="dly-header">
+    <div class="dly-header-inner">
+      <a class="dly-logo" href="#dly-top">
+        <span class="dly-logo-mark">每</span>
+        <span class="dly-logo-text">每日大赛<small>DAILY CONTEST</small></span>
+      </a>
+      <nav class="dly-nav" id="dlyNav" aria-label="主导航">
+        <a class="dly-active" href="#dly-top">首页</a>
+        <a href="#dly-focus">焦点赛事</a>
+        <a href="#dly-videos">视频流</a>
+        <a href="#dly-topics">专题企划</a>
+        <a href="#dly-creators">创作者</a>
+        <a href="#dly-updates">官方动态</a>
+        <a href="#dly-faq">帮助</a>
+        <a href="#dly-contact">联系</a>
+      </nav>
+      <div class="dly-head-tools">
+        <div class="dly-search" id="dlySearch">
+          <span class="dly-search-ico">⌕</span>
+          <input type="search" id="dlySearchInput" placeholder="搜索命题、赛事、创作者" aria-label="站内搜索">
+          <button class="dly-search-btn" id="dlySearchBtn" type="button">搜索</button>
+          <div class="dly-search-tip" id="dlySearchTip"></div>
+        </div>
+        <button class="dly-btn dly-btn-primary" type="button" data-dly-modal="submit">立即投稿</button>
+      </div>
+      <button class="dly-burger" id="dlyBurger" type="button" aria-label="展开导航" aria-expanded="false">☰</button>
+    </div>
+  </header>
+</div>
+
+<main id="dly-top">
+
+  <!-- ===== 首屏 ===== -->
+  <section class="dly-hero">
+    <div class="dly-container dly-hero-grid">
+      <div class="dly-hero-copy">
+        <span class="dly-hero-badge"><i></i> 品牌官网 · 每日更新 · 持续运营中</span>
+        <h1>每日大赛 <em>影像竞技场</em></h1>
+        <p class="dly-hero-sub">专注影像命题创作与创作者竞技的<strong>官方网站</strong>，让每一次按下录制键都有回响。</p>
+        <p class="dly-hero-desc">
+          每日大赛是企业级影像内容平台，以「一天一命题、一事一作品」的节奏，为创作者提供稳定的竞技场与展示位，
+          为企业与品牌提供值得信赖的原创内容生态。平台深耕垂直领域七年，累计沉淀超四万条原创影像，
+          以专业评审、真实数据与公开榜单，让好作品被看见、被讨论、被记住。
+        </p>
+        <div class="dly-hero-actions">
+          <button class="dly-btn dly-btn-primary" type="button" data-dly-modal="submit">报名参与命题</button>
+          <a class="dly-btn dly-btn-ghost" href="#dly-videos">浏览精品内容</a>
+        </div>
+        <div class="dly-hero-stats">
+          <div class="dly-stat">
+            <b><span data-dly-count="4280">4280</span><i>+</i></b>
+            <span>累计命题场次</span>
+          </div>
+          <div class="dly-stat">
+            <b><span data-dly-count="12600">12600</span><i>+</i></b>
+            <span>注册创作者</span>
+          </div>
+          <div class="dly-stat">
+            <b><span data-dly-count="98">98</span><i>%</i></b>
+            <span>投稿审核通过口碑</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dly-hero-visual">
+        <figure class="dly-hero-frame">
+          <img alt="每日大赛第247期命题城市呼吸的焦点参赛作品封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%230b1c33'/%3E%3Cstop offset='.55' stop-color='%231a3550'/%3E%3Cstop offset='1' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3ClinearGradient id='bldg' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23111a26'/%3E%3Cstop offset='1' stop-color='%232a3b52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23sky)'/%3E%3Ccircle cx='648' cy='116' r='52' fill='%23fbbf24' opacity='.85'/%3E%3Cpath d='M0 380 L90 300 L150 330 L230 250 L300 320 L370 260 L450 340 L540 280 L620 330 L720 270 L800 340 L800 500 L0 500 Z' fill='%230d1a29' opacity='.9'/%3E%3Cg fill='url(%23bldg)'%3E%3Crect x='60' y='320' width='70' height='180'/%3E%3Crect x='150' y='270' width='52' height='230'/%3E%3Crect x='225' y='340' width='84' height='160'/%3E%3Crect x='330' y='290' width='46' height='210'/%3E%3Crect x='396' y='350' width='96' height='150'/%3E%3Crect x='512' y='300' width='62' height='200'/%3E%3Crect x='592' y='260' width='48' height='240'/%3E%3Crect x='660' y='336' width='86' height='164'/%3E%3C/g%3E%3Cg fill='%23fcd34d' opacity='.55'%3E%3Crect x='70' y='336' width='9' height='9'/%3E%3Crect x='90' y='360' width='9' height='9'/%3E%3Crect x='161' y='288' width='8' height='8'/%3E%3Crect x='180' y='318' width='8' height='8'/%3E%3Crect x='238' y='358' width='9' height='9'/%3E%3Crect x='268' y='382' width='9' height='9'/%3E%3Crect x='342' y='308' width='8' height='8'/%3E%3Crect x='410' y='368' width='9' height='9'/%3E%3Crect x='446' y='392' width='9' height='9'/%3E%3Crect x='528' y='318' width='9' height='9'/%3E%3Crect x='602' y='278' width='8' height='8'/%3E%3Crect x='676' y='354' width='9' height='9'/%3E%3C/g%3E%3Crect y='392' width='800' height='108' fill='%23070d15' opacity='.55'/%3E%3C/svg%3E">
+          <span class="dly-hero-live"><i></i> 命题进行中 · 剩余 04:12:38</span>
+          <figcaption class="dly-hero-caption">
+            第 247 期命题《城市呼吸》焦点参赛作品
+            <small>创作者 · 林间取景器 ｜ 时长 04:26 ｜ 原创 高清 无删改</small>
+          </figcaption>
+        </figure>
+        <div class="dly-hero-mini">
+          <img alt="每日大赛创作者工作台界面缩略封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23111c2b'/%3E%3Crect x='16' y='18' width='128' height='16' rx='4' fill='%2338bdf8' opacity='.75'/%3E%3Crect x='16' y='46' width='88' height='10' rx='4' fill='%2394a3b8' opacity='.6'/%3E%3Crect x='16' y='70' width='284' height='42' rx='8' fill='%231c2a3d'/%3E%3Crect x='28' y='82' width='150' height='8' rx='4' fill='%23f59e0b'/%3E%3Crect x='28' y='96' width='96' height='7' rx='4' fill='%234b5f7a'/%3E%3Crect x='16' y='126' width='92' height='38' rx='8' fill='%231c2a3d' stroke='%23f59e0b' stroke-opacity='.55'/%3E%3Crect x='118' y='126' width='92' height='38' rx='8' fill='%231c2a3d'/%3E%3Crect x='220' y='126' width='80' height='38' rx='8' fill='%231c2a3d'/%3E%3C/svg%3E">
+          <p>创作者工作台 · 投稿、审片、数据一站完成</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关键词深度解析 ===== -->
+  <section class="dly-section dly-section-alt" id="dly-about">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">About Daily Contest</span>
+          <h2>什么是「每日大赛」<span>影像竞技</span>模式</h2>
+        </div>
+        <p>一篇完整解析：命题机制、评审逻辑、创作者成长路径与内容生态，说明这个品牌为何值得持续参与。</p>
+      </div>
+
+      <div class="dly-about-grid">
+        <aside class="dly-about-quote">
+          <h3>一句话定位</h3>
+          <p>
+            每日大赛官方网站，是一个以「日更命题」为核心的原创影像竞技与内容社区平台。
+            我们相信限制会产生力量：当命题足够具体，创作者就会拿出足够具体的作品。
+          </p>
+          <div class="dly-quote-tags">
+            <span>官网直营</span>
+            <span>原创正版</span>
+            <span>高清成片</span>
+            <span>专业评审</span>
+            <span>社区共建</span>
+            <span>持续运营</span>
+          </div>
+        </aside>
+
+        <article class="dly-article">
+          <h3>一、命题：让创作从“想拍什么”变成“怎么拍好”</h3>
+          <p>
+            在影像创作的现实里，最大的阻力往往不是设备，而是选题。面对空白的拍摄计划，很多有能力的创作者一拖再拖。每日大赛把这件事反过来了：平台每天给出一个明确、可执行、有画面感的命题，比如「城市呼吸」「一杯凉掉的水」「地铁倒数第三站「」，创作者只需要思考如何用自己的镜头语言回应它。命题由平台内容团队与外部评审共同拟定，每日 22:00 更新次日题目，并在官方网站同步发布命题说明、参考片单与拍摄边界，保证竞技尺度的统一。
+          </p>
+          <p>
+            这种机制带来的直接结果是产出节奏。一个创作者一年可能只完成三五个“大作”，但在每日大赛，他可以一年交出上百份有明确完成度的作品。完片率提升，审美判断力才会真正长出来。这也是我们把品牌命名为每日大赛的原因：不是追求热闹，而是追求一种可持续的、日常化的竞技习惯。
+          </p>
+
+          <h3>二、评审：专业、公开、可复核</h3>
+          <p>
+            平台设立三级评审体系。第一层是算法初筛，检查时长、画幅、原创声明与素材合规性；第二层是社区互评，所有通过初筛的作品在官方网站公开展示，由注册创作者交叉打分，互评权重占三成；第三层是专业评审团，由纪录片导演、广告摄影指导、剪辑师与内容策略人组成，每期轮换，避免审美固化。每期结果公示期三天，任何创作者都可以对评审结论提出复核申请。
+          </p>
+          <p>
+            我们坚持公开评分维度：<strong>命题贴合度、影像完成度、叙事清晰度、原创性</strong>四项，各占不同权重。榜单不只看热度，也看质量稳定性，因此存在“冷门高口碑”作品逆袭的通道。这种设计让社区对平台有基本的信任感，也让品牌在行业里积累了扎实的口碑。
+          </p>
+
+          <h3>三、成长：从新人榜到年度匠心榜的路径</h3>
+          <p>
+            每日大赛不是一次性比赛，而是一条有台阶的成长路径。新人完成首期投稿后进入新人榜，累计三次入围即可解锁进阶创作权益，包括监听耳机、租借设备额度与官方推荐位。月度优胜者进入季度赛，年度优胜者进入「匠心影像榜」提名，与专业创作者同台。平台记录每一位创作者的完整参赛轨迹，形成可外链的个人作品档案页，方便用于求职、接单与合作洽谈。
+          </p>
+          <p>
+            这套体系是我们做内容生态的核心：平台不生产作品，平台生产“让作品被认真对待”的条件。对品牌方而言，这里是可以找到真实拍摄能力的创作者池；对创作者而言，这里是能被看见、被验证、被记住的训练场。
+          </p>
+
+          <h3>四、社区：把竞技做成同好之间的日常</h3>
+          <p>
+            竞技容易产生孤独感，社区可以消解它。每日大赛的评论区不做无意义的灌水，而是鼓励“具体交流”：你用了什么镜头、这个转场为什么成立、如果换一种光线会怎样。平台每周整理「复盘帖」，把优秀作品的分镜、调色与音效拆开讲，形成可反复查阅的知识沉淀。我们也在线下组织小规模创作局，让线上认识的人在真实街景里一起拍一条片子。
+          </p>
+          <p>
+            作为企业，我们清楚社区的边界：尊重创作者的作品权属，不擅自二次分发；保护投稿者的隐私，不公开未授权的拍摄信息；遇到争议先沟通再处理。用户至上不是口号，是流程里能被检验的细节。<span class="dly-inline-tag">每日大赛</span>希望成为国内影像创作领域里，一个长期主义者的名字。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 焦点赛事 ===== -->
+  <section class="dly-section" id="dly-focus">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Focus</span>
+          <h2>焦点赛事与<span>精品内容</span></h2>
+        </div>
+        <p>由官方编辑部与专业评审团共同选出的本期重点，兼顾完成度与表达勇气。</p>
+      </div>
+
+      <div class="dly-focus-grid">
+        <article class="dly-focus-main">
+          <img alt="第247期命题城市呼吸全场最佳作品封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230e3b4a'/%3E%3Cstop offset='1' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23g1)'/%3E%3Cg stroke='%23e6edf7' stroke-opacity='.22' stroke-width='2'%3E%3Cpath d='M0 400 Q200 320 400 380 T800 350' fill='none'/%3E%3Cpath d='M0 430 Q220 350 420 410 T800 390' fill='none'/%3E%3C/g%3E%3Cg fill='%23091218' opacity='.84'%3E%3Crect x='90' y='210' width='56' height='180'/%3E%3Crect x='160' y='150' width='44' height='240'/%3E%3Crect x='218' y='250' width='70' height='140'/%3E%3Crect x='300' y='180' width='40' height='210'/%3E%3Crect x='352' y='120' width='62' height='270'/%3E%3Crect x='430' y='230' width='52' height='160'/%3E%3Crect x='500' y='170' width='44' height='220'/%3E%3Crect x='560' y='260' width='76' height='130'/%3E%3Crect x='650' y='200' width='50' height='190'/%3E%3C/g%3E%3Cg fill='%23fde68a' opacity='.6'%3E%3Ccircle cx='380' cy='170' r='5'/%3E%3Ccircle cx='462' cy='262' r='5'/%3E%3Ccircle cx='668' cy='232' r='5'/%3E%3Ccircle cx='330' cy='212' r='4'/%3E%3C/g%3E%3Cpath d='M0 500 L0 440 L800 420 L800 500 Z' fill='%23060b11' opacity='.8'/%3E%3C/svg%3E">
+          <div class="dly-focus-body">
+            <span class="dly-tag">本期最佳 · 原创首映</span>
+            <h3>《城市呼吸》—— 一条天桥上的十二次呼吸</h3>
+            <p>创作者 林间取景器 用固定机位记录早高峰人流，把剪辑权交给呼吸节奏。评审团评价：“克制、准确，像一个真正在等待的人。”</p>
+          </div>
+        </article>
+
+        <div class="dly-focus-side">
+          <article class="dly-focus-item">
+            <div class="dly-focus-thumb">
+              <img alt="深度测评作品一镜到底剪辑方案的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23142733'/%3E%3Cpath d='M0 130 L70 96 L130 116 L200 80 L262 104 L320 74 L320 180 L0 180 Z' fill='%230e1c26'/%3E%3Ccircle cx='248' cy='46' r='24' fill='%23f59e0b' opacity='.8'/%3E%3Cpath d='M60 140 L110 108 L160 126' stroke='%2338bdf8' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+              <span class="dly-play-dot">▶</span>
+            </div>
+            <div>
+              <span class="dly-tag dly-tag-cyan">教程干货</span>
+              <h4>一镜到底的九种衔接：从楼梯到天台</h4>
+              <small>创作者 三脚架不抖 ｜ 08:12</small>
+              <div class="dly-focus-meta"><span>1.2 万次播放</span><span>收藏 860</span></div>
+            </div>
+          </article>
+
+          <article class="dly-focus-item">
+            <div class="dly-focus-thumb">
+              <img alt="人物访谈作品夜班出租司机的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%230d1a24'/%3E%3Crect x='0' y='118' width='320' height='62' fill='%231c2b38'/%3E%3Ccircle cx='160' cy='74' r='34' fill='%23394a5c'/%3E%3Cpath d='M112 180 Q160 118 208 180 Z' fill='%232b3d4f'/%3E%3Crect x='34' y='34' width='46' height='10' rx='5' fill='%23f59e0b' opacity='.75'/%3E%3Crect x='242' y='52' width='44' height='10' rx='5' fill='%2338bdf8' opacity='.65'/%3E%3C/svg%3E">
+              <span class="dly-play-dot">▶</span>
+            </div>
+            <div>
+              <span class="dly-tag dly-tag-lime">人物访谈</span>
+              <h4>夜班出租司机：我把城市听了一万遍</h4>
+              <small>创作者 街角录音机 ｜ 12:40</small>
+              <div class="dly-focus-meta"><span>9800 次播放</span><span>收藏 1120</span></div>
+            </div>
+          </article>
+
+          <article class="dly-focus-item">
+            <div class="dly-focus-thumb">
+              <img alt="萌宠日常作品猫的午后三点的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23f4e6cf'/%3E%3Crect x='0' y='128' width='320' height='52' fill='%23e3c8a0'/%3E%3Ccircle cx='128' cy='92' r='32' fill='%238a6a4a'/%3E%3Cpath d='M108 68 L116 44 L128 66 Z' fill='%238a6a4a'/%3E%3Cpath d='M148 66 L160 44 L168 68 Z' fill='%238a6a4a'/%3E%3Ccircle cx='118' cy='90' r='4' fill='%231d1712'/%3E%3Ccircle cx='138' cy='90' r='4' fill='%231d1712'/%3E%3Crect x='196' y='84' width='78' height='60' rx='8' fill='%23c9a877'/%3E%3Ccircle cx='252' cy='46' r='20' fill='%23f59e0b' opacity='.55'/%3E%3C/svg%3E">
+              <span class="dly-play-dot">▶</span>
+            </div>
+            <div>
+              <span class="dly-tag">日常记录</span>
+              <h4>午后三点，猫把我的分镜稿踩乱了</h4>
+              <small>创作者 毛豆她妈 ｜ 03:58</small>
+              <div class="dly-focus-meta"><span>1.6 万次播放</span><span>收藏 2100</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 视频流 ===== -->
+  <section class="dly-section dly-section-alt" id="dly-videos">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Daily Feed</span>
+          <h2>今日视频流 · <span>6 条精选</span></h2>
+        </div>
+        <p>全部为官方审核通过的原创投稿，支持点赞、收藏与分享，数据实时更新。</p>
+      </div>
+
+      <div class="dly-filter-bar" id="dlyFilterBar" role="tablist" aria-label="内容筛选">
+        <button class="dly-chip dly-on" type="button" data-dly-filter="all">全部</button>
+        <button class="dly-chip" type="button" data-dly-filter="记录">日常记录</button>
+        <button class="dly-chip" type="button" data-dly-filter="测评">深度测评</button>
+        <button class="dly-chip" type="button" data-dly-filter="教程">教程干货</button>
+        <button class="dly-chip" type="button" data-dly-filter="访谈">人物访谈</button>
+        <button class="dly-chip" type="button" data-dly-filter="城市">城市探索</button>
+      </div>
+
+      <div class="dly-video-grid" id="dlyVideoGrid">
+        <article class="dly-card" data-dly-cat="城市">
+          <div class="dly-thumb">
+            <img alt="城市探索作品老城区早市的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23223b45'/%3E%3Crect x='0' y='112' width='320' height='68' fill='%23162a33'/%3E%3Cg fill='%23f5b942' opacity='.85'%3E%3Ccircle cx='52' cy='64' r='9'/%3E%3Ccircle cx='106' cy='52' r='7'/%3E%3Ccircle cx='240' cy='60' r='8'/%3E%3C/g%3E%3Cg stroke='%23a8c4c0' stroke-width='3' stroke-opacity='.5'%3E%3Cpath d='M20 118 L20 60'/%3E%3Cpath d='M300 118 L300 66'/%3E%3C/g%3E%3Crect x='120' y='94' width='80' height='46' rx='4' fill='%23e0673f' opacity='.8'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">命题精选</span>
+            <span class="dly-dur">05:12</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>五点半的老城早市，声音比画面更先醒来</h3>
+            <p>收声师视角的菜市场笔记，收录十七种叫卖与四十秒的沉默。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#f59e0b">早</span>早班拾光</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>1284</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dly-card" data-dly-cat="测评">
+          <div class="dly-thumb">
+            <img alt="深度测评三支定焦镜头夜景对比的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23121a26'/%3E%3Ccircle cx='86' cy='92' r='42' fill='none' stroke='%2338bdf8' stroke-width='7'/%3E%3Ccircle cx='86' cy='92' r='20' fill='%2338bdf8' opacity='.25'/%3E%3Ccircle cx='196' cy='92' r='42' fill='none' stroke='%23f59e0b' stroke-width='7'/%3E%3Ccircle cx='196' cy='92' r='20' fill='%23f59e0b' opacity='.25'/%3E%3Crect x='252' y='52' width='44' height='80' rx='6' fill='%232c3a4d'/%3E%3Crect x='260' y='64' width='28' height='8' rx='4' fill='%2394a3b8'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">硬核实测</span>
+            <span class="dly-dur">11:06</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>三支定焦镜头夜景实测：谁的高光不炸</h3>
+            <p>同一机位、同一参数、同一晚，逐帧对比边缘画质与眩光表现。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#38bdf8">器</span>器材不睡觉</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>2046</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dly-card" data-dly-cat="教程">
+          <div class="dly-thumb">
+            <img alt="教程干货作品十分钟学会人物跟拍的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%231b2c22'/%3E%3Cpath d='M20 150 L90 120 L160 136 L230 96 L300 118' stroke='%23a3e635' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='160' cy='72' r='26' fill='%23e6edf7' opacity='.9'/%3E%3Cpath d='M136 128 Q160 96 184 128 Z' fill='%23e6edf7' opacity='.75'/%3E%3Crect x='242' y='36' width='54' height='14' rx='7' fill='%23a3e635' opacity='.7'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">干货可抄</span>
+            <span class="dly-dur">09:31</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>十分钟学会人物跟拍：三条稳定路线</h3>
+            <p>从脚步节奏到呼吸控制，用最少设备拍出流畅的跟随运镜。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#a3e635">稳</span>三脚架不抖</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>1763</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dly-card" data-dly-cat="访谈">
+          <div class="dly-thumb">
+            <img alt="人物访谈作品独立剪辑师的十年桌面的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%232a1f2e'/%3E%3Crect x='40' y='88' width='240' height='72' rx='6' fill='%233a2c3f'/%3E%3Crect x='92' y='42' width='136' height='48' rx='4' fill='%231a1220' stroke='%23c084fc' stroke-opacity='.6'/%3E%3Crect x='104' y='54' width='52' height='6' rx='3' fill='%23f59e0b'/%3E%3Crect x='104' y='66' width='86' height='6' rx='3' fill='%2394a3b8' opacity='.6'/%3E%3Crect x='60' y='104' width='72' height='42' rx='4' fill='%234a3752'/%3E%3Ccircle cx='246' cy='116' r='16' fill='%23c084fc' opacity='.45'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">深度对谈</span>
+            <span class="dly-dur">18:47</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>独立剪辑师十年：我把桌面留给了硬盘</h3>
+            <p>聊接单、聊改稿、聊那些年被删掉的开头，也聊如何守住自己的判断。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#c084fc">影</span>影像会客厅</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>932</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dly-card" data-dly-cat="记录">
+          <div class="dly-thumb">
+            <img alt="日常记录作品给外婆拍第一次自拍的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23f2ded0'/%3E%3Ccircle cx='160' cy='80' r='38' fill='%23c99a7a'/%3E%3Cpath d='M116 180 Q160 112 204 180 Z' fill='%23b07a5c'/%3E%3Crect x='214' y='34' width='54' height='86' rx='6' fill='%23fff' opacity='.85'/%3E%3Crect x='222' y='44' width='38' height='50' rx='3' fill='%23f59e0b' opacity='.7'/%3E%3Ccircle cx='60' cy='56' r='14' fill='%23e6b28c' opacity='.8'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">温暖</span>
+            <span class="dly-dur">06:24</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>教外婆用前置镜头，她问我为什么脸这么大</h3>
+            <p>一条关于耐心与笑声的记录，拍摄地点是老家厨房和一张塑料凳。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#fb7185">归</span>归家频道</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>3210</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dly-card" data-dly-cat="城市">
+          <div class="dly-thumb">
+            <img alt="城市探索作品末班地铁最后一节的封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%230e1620'/%3E%3Cpath d='M0 130 L320 130 L320 180 L0 180 Z' fill='%23182433'/%3E%3Crect x='30' y='40' width='260' height='80' rx='10' fill='%23142431' stroke='%2338bdf8' stroke-opacity='.35'/%3E%3Crect x='48' y='56' width='62' height='44' rx='4' fill='%235b7f95' opacity='.8'/%3E%3Crect x='128' y='56' width='62' height='44' rx='4' fill='%233f5f74' opacity='.8'/%3E%3Crect x='208' y='56' width='62' height='44' rx='4' fill='%232e495b' opacity='.8'/%3E%3Ccircle cx='86' cy='112' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='234' cy='112' r='6' fill='%23f59e0b'/%3E%3C/svg%3E">
+            <span class="dly-thumb-tag">深夜选题</span>
+            <span class="dly-dur">07:03</span>
+          </div>
+          <div class="dly-card-body">
+            <h3>末班地铁最后一节车厢，有六个人没下车</h3>
+            <p>用固定镜头等一个答案，结果等到了一段安静的城市独白。</p>
+            <div class="dly-card-foot">
+              <span class="dly-author-mini"><span class="dly-avatar" style="background:#38bdf8">末</span>末班影像</span>
+              <div class="dly-ops">
+                <button class="dly-op" type="button" data-dly-like>♡ <span>2455</span></button>
+                <button class="dly-op" type="button" data-dly-fav>☆ 收藏</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 专题 ===== -->
+  <section class="dly-section" id="dly-topics">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Series</span>
+          <h2>专题企划 · <span>正在进行中</span></h2>
+        </div>
+        <p>四个长线企划，覆盖城市文化、创作幕后、兴趣同好与治愈影像，按周更新。</p>
+      </div>
+
+      <div class="dly-topic-grid">
+        <article class="dly-topic">
+          <img alt="专题企划一条街的十二个时辰封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%231f2f3c'/%3E%3Crect x='0' y='300' width='400' height='200' fill='%23121d27'/%3E%3Cg fill='%23f59e0b' opacity='.8'%3E%3Crect x='48' y='90' width='14' height='210'/%3E%3Crect x='160' y='60' width='14' height='240'/%3E%3Crect x='276' y='110' width='14' height='190'/%3E%3C/g%3E%3Ccircle cx='310' cy='92' r='36' fill='%23fbbf24' opacity='.45'/%3E%3Cpath d='M0 360 L400 340' stroke='%2338bdf8' stroke-opacity='.4' stroke-width='3'/%3E%3C/svg%3E">
+          <div class="dly-topic-info">
+            <h3>一条街的十二个时辰</h3>
+            <p>十二位创作者接力记录同一条老街，从清晨豆浆摊到凌晨修车铺。</p>
+            <span class="dly-topic-status"><i></i> 更新至第 8 集</span>
+          </div>
+        </article>
+
+        <article class="dly-topic">
+          <img alt="专题企划创作幕后从脚本到成片封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23161d2b'/%3E%3Crect x='40' y='70' width='320' height='180' rx='10' fill='%23202a3c'/%3E%3Crect x='60' y='92' width='130' height='12' rx='6' fill='%2338bdf8' opacity='.8'/%3E%3Crect x='60' y='118' width='230' height='9' rx='4' fill='%2394a3b8' opacity='.5'/%3E%3Crect x='60' y='138' width='186' height='9' rx='4' fill='%2394a3b8' opacity='.35'/%3E%3Crect x='40' y='280' width='150' height='130' rx='10' fill='%23f59e0b' opacity='.22'/%3E%3Crect x='210' y='280' width='150' height='130' rx='10' fill='%2338bdf8' opacity='.18'/%3E%3Cpath d='M110 340 L150 310 L150 372 Z' fill='%23f59e0b'/%3E%3C/svg%3E">
+          <div class="dly-topic-info">
+            <h3>创作幕后：从脚本到成片</h3>
+            <p>跟踪三组创作者完成一条命题作品，公开分镜、预算与返工记录。</p>
+            <span class="dly-topic-status"><i></i> 更新至第 5 集</span>
+          </div>
+        </article>
+
+        <article class="dly-topic">
+          <img alt="专题企划同好们的小众兴趣封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%231b2a24'/%3E%3Ccircle cx='120' cy='140' r='58' fill='%23a3e635' opacity='.3'/%3E%3Ccircle cx='280' cy='220' r='42' fill='%23f59e0b' opacity='.35'/%3E%3Crect x='60' y='300' width='280' height='120' rx='12' fill='%23243a2f'/%3E%3Crect x='82' y='326' width='120' height='10' rx='5' fill='%23a3e635' opacity='.7'/%3E%3Crect x='82' y='350' width='200' height='8' rx='4' fill='%2388a89a' opacity='.5'/%3E%3Crect x='82' y='370' width='160' height='8' rx='4' fill='%2388a89a' opacity='.35'/%3E%3C/svg%3E">
+          <div class="dly-topic-info">
+            <h3>同好们的小众兴趣</h3>
+            <p>胶片冲洗、矿石标本、老相机维修，镜头对准那些安静的坚持。</p>
+            <span class="dly-topic-status"><i></i> 更新至第 11 集</span>
+          </div>
+        </article>
+
+        <article class="dly-topic">
+          <img alt="专题企划三分钟治愈影像封面" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%2324232f'/%3E%3Ccircle cx='200' cy='170' r='86' fill='%23c084fc' opacity='.22'/%3E%3Ccircle cx='200' cy='170' r='52' fill='%23fbcfe8' opacity='.35'/%3E%3Cpath d='M0 340 Q100 290 200 330 T400 300 L400 500 L0 500 Z' fill='%231a1a24'/%3E%3Cg fill='%23f9a8d4' opacity='.6'%3E%3Ccircle cx='90' cy='390' r='5'/%3E%3Ccircle cx='180' cy='420' r='4'/%3E%3Ccircle cx='290' cy='386' r='5'/%3E%3C/g%3E%3C/svg%3E">
+          <div class="dly-topic-info">
+            <h3>三分钟治愈影像</h3>
+            <p>睡前可看的短篇合集，水面、云影、一盏灯，慢一点也没关系。</p>
+            <span class="dly-topic-status"><i></i> 每日 21:00 更新</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 创作者 ===== -->
+  <section class="dly-section dly-section-alt" id="dly-creators">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Creators</span>
+          <h2>创作者矩阵 · <span>持续被看见</span></h2>
+        </div>
+        <p>平台签约与活跃创作者代表，覆盖纪实、教程、测评、访谈与生活记录多个方向。</p>
+      </div>
+
+      <div class="dly-creator-grid">
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#f59e0b,#f97316)">林</span>
+          <div>
+            <h3>林间取景器</h3>
+            <p class="dly-creator-field">城市纪实 · 固定机位</p>
+            <p>擅长在同一个位置等不同的人，认为耐心是最好的一支镜头。</p>
+            <div class="dly-creator-data"><span>作品 <b>186</b></span><span>粉丝 <b>3.2万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="林间取景器">查看档案</button>
+          </div>
+        </article>
+
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#38bdf8,#0ea5e9)">器</span>
+          <div>
+            <h3>器材不睡觉</h3>
+            <p class="dly-creator-field">器材测评 · 画质对比</p>
+            <p>只做能复现的测试，所有样片公开原始参数，拒绝玄学结论。</p>
+            <div class="dly-creator-data"><span>作品 <b>94</b></span><span>粉丝 <b>5.7万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="器材不睡觉">查看档案</button>
+          </div>
+        </article>
+
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#a3e635,#65a30d)">稳</span>
+          <div>
+            <h3>三脚架不抖</h3>
+            <p class="dly-creator-field">拍摄教程 · 运镜拆解</p>
+            <p>把复杂运镜拆成可练习的动作，让新手也能拍出稳定画面。</p>
+            <div class="dly-creator-data"><span>作品 <b>142</b></span><span>粉丝 <b>4.4万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="三脚架不抖">查看档案</button>
+          </div>
+        </article>
+
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#c084fc,#8b5cf6)">影</span>
+          <div>
+            <h3>影像会客厅</h3>
+            <p class="dly-creator-field">人物访谈 · 行业观察</p>
+            <p>喜欢问“为什么这么剪”，让幕后的人把话说完，不急着收尾。</p>
+            <div class="dly-creator-data"><span>作品 <b>68</b></span><span>粉丝 <b>2.1万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="影像会客厅">查看档案</button>
+          </div>
+        </article>
+
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#fb7185,#f43f5e)">归</span>
+          <div>
+            <h3>归家频道</h3>
+            <p class="dly-creator-field">日常记录 · 家庭影像</p>
+            <p>记录父母与老房子，相信最普通的日子也值得被认真保存。</p>
+            <div class="dly-creator-data"><span>作品 <b>211</b></span><span>粉丝 <b>6.8万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="归家频道">查看档案</button>
+          </div>
+        </article>
+
+        <article class="dly-creator">
+          <span class="dly-creator-av" style="background:linear-gradient(140deg,#2dd4bf,#0d9488)">末</span>
+          <div>
+            <h3>末班影像</h3>
+            <p class="dly-creator-field">深夜题材 · 环境声</p>
+            <p>只在晚上十点后出门，用环境声代替配乐，让城市自己说话。</p>
+            <div class="dly-creator-data"><span>作品 <b>77</b></span><span>粉丝 <b>1.9万</b></span></div>
+            <button class="dly-creator-btn" type="button" data-dly-modal="creator" data-dly-name="末班影像">查看档案</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 排行 + 评价 ===== -->
+  <section class="dly-section" id="dly-rank">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Rank &amp; Voice</span>
+          <h2>本周热度榜与<span>用户口碑</span></h2>
+        </div>
+        <p>榜单按互评分数、完播率与口碑加权生成，每周一更新，历史榜单可在官网查询。</p>
+      </div>
+
+      <div class="dly-rank-cmt">
+        <div class="dly-rank-list">
+          <div class="dly-rank-item">
+            <span class="dly-rank-no">1</span>
+            <div><h4>城市呼吸 · 天桥上的十二次呼吸</h4><small>林间取景器 ｜ 纪实</small></div>
+            <span class="dly-rank-score">9.6</span>
+          </div>
+          <div class="dly-rank-item">
+            <span class="dly-rank-no">2</span>
+            <div><h4>三支定焦夜景实测</h4><small>器材不睡觉 ｜ 测评</small></div>
+            <span class="dly-rank-score">9.4</span>
+          </div>
+          <div class="dly-rank-item">
+            <span class="dly-rank-no">3</span>
+            <div><h4>末班地铁最后一节车厢</h4><small>末班影像 ｜ 城市</small></div>
+            <span class="dly-rank-score">9.2</span>
+          </div>
+          <div class="dly-rank-item">
+            <span class="dly-rank-no">4</span>
+            <div><h4>教外婆用前置镜头</h4><small>归家频道 ｜ 记录</small></div>
+            <span class="dly-rank-score">9.1</span>
+          </div>
+          <div class="dly-rank-item">
+            <span class="dly-rank-no">5</span>
+            <div><h4>独立剪辑师十年</h4><small>影像会客厅 ｜ 访谈</small></div>
+            <span class="dly-rank-score">8.9</span>
+          </div>
+        </div>
+
+        <div class="dly-cmt-list">
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#f59e0b">阿</span>
+              <b>阿禾不加班</b><span>参与 34 期</span>
+              <span class="dly-cmt-stars">★★★★★</span>
+            </div>
+            <p>第一次投稿时完全没底，评审给了很长的文字反馈，指出我声音处理的问题。后来我按建议重剪了一遍，第二次入围新人榜。这种被认真对待的感觉很少见。</p>
+          </div>
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#38bdf8">T</span>
+              <b>Tony_拍片日记</b><span>参与 12 期</span>
+              <span class="dly-cmt-stars">★★★★☆</span>
+            </div>
+            <p>命题质量稳定，尤其是限制条件写得很清楚，不会拍着拍着跑题。缺点也有，热门时段的推荐位比较挤，希望多给新人一点曝光。</p>
+          </div>
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#a3e635">麦</span>
+              <b>麦田里的收音师</b><span>参与 07 期</span>
+              <span class="dly-cmt-stars">★★★★★</span>
+            </div>
+            <p>作为声音工种，这里是我见过最尊重同期声的社区。评论区会讨论麦克风摆位，而不是只夸“好治愈”，这一点很难得。</p>
+          </div>
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#c084fc">小</span>
+              <b>小满在剪辑</b><span>参与 51 期</span>
+              <span class="dly-cmt-stars">★★★★★</span>
+            </div>
+            <p>连续参加半年，最大的变化是手速和判断力。以前一条五分钟的片子要剪一周，现在两天能出结构。投稿数据面板很直观，能看到完播率掉在哪一秒。</p>
+          </div>
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#fb7185">桥</span>
+              <b>桥下等风</b><span>参与 03 期</span>
+              <span class="dly-cmt-stars">★★★★☆</span>
+            </div>
+            <p>新手上手不难，命题说明里有参考片单很友好。如果能增加一个“只看同城创作者”的筛选会更方便组队。</p>
+          </div>
+          <div class="dly-cmt">
+            <div class="dly-cmt-top">
+              <span class="dly-avatar" style="background:#2dd4bf">老</span>
+              <b>老周拍菜市场</b><span>参与 88 期</span>
+              <span class="dly-cmt-stars">★★★★★</span>
+            </div>
+            <p>我拍了三年菜市场，在这里第一次遇到这么多同好。线下创作局认识的两个年轻人，现在成了固定搭子，每个月一起拍一条。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 灵感工具 ===== -->
+  <section class="dly-section dly-section-alt" id="dly-tools">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Studio Tools</span>
+          <h2>创作灵感与<span>实用工具</span></h2>
+        </div>
+        <p>平台自研的辅助工具，帮助你把一个模糊的想法，快速推到一个能开工的状态。</p>
+      </div>
+
+      <div class="dly-tool-grid">
+        <article class="dly-tool">
+          <div class="dly-tool-ico">✎</div>
+          <h3>命题脚本灵感器</h3>
+          <p>输入你的器材与可拍摄时间，生成三个可执行的短片结构，含开场、转折与收尾建议。</p>
+          <button type="button" data-dly-tool="脚本灵感">生成一组灵感 →</button>
+        </article>
+        <article class="dly-tool">
+          <div class="dly-tool-ico">◈</div>
+          <h3>标题与封面建议</h3>
+          <p>根据作品类型给出十个标题方向与三种封面构图参考，避免标题党，也避免没人点。</p>
+          <button type="button" data-dly-tool="标题建议">获取标题建议 →</button>
+        </article>
+        <article class="dly-tool">
+          <div class="dly-tool-ico">⌗</div>
+          <h3>剪辑节奏拆解</h3>
+          <p>上传时间线截图，按镜头长度分布给出节奏诊断，提示哪一段观众可能流失。</p>
+          <button type="button" data-dly-tool="剪辑诊断">查看诊断示例 →</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 官方动态 + 合作伙伴 ===== -->
+  <section class="dly-section" id="dly-updates">
+    <div class="dly-container">
+      <div class="dly-sec-head">
+        <div>
+          <span class="dly-kicker">Newsroom</span>
+          <h2>官方动态与<span>合作生态</span></h2>
+        </div>
+        <p>企业动态、赛事公告与合作伙伴，全部由官方发布，内容可追溯。</p>
+      </div>
+
+      <div class="dly-updates-partners">
+        <div class="dly-timeline">
+          <div class="dly-update">
+            <time datetime="2026-11-19">2026 / 11 / 19</time>
+            <h4>第 248 期命题「城市呼吸」开放投稿</h4>
+            <p>本期命题聚焦城市环境下的人与声音，投稿截止 11 月 24 日 22:00，评审将于 26 日公示。</p>
+          </div>
+          <div class="dly-update">
+            <time datetime="2026-11-16">2026 / 11 / 16</time>
+            <h4>年度「匠心影像榜」报名通道开启</h4>
+            <p>共设纪实、广告、短剧、实验影像等 12 个赛道，支持个人与团队报名，官网提交作品链接即可。</p>
+          </div>
+          <div class="dly-update">
+            <time datetime="2026-11-11">2026 / 11 / 11</time>
+            <h4>创作者权益升级：原创声明与作品溯源</h4>
+            <p>投稿时可附加素材来源与拍摄授权信息，通过审核后作品页面将展示溯源标记，便于商业合作查验。</p>
+          </div>
+          <div class="dly-update">
+            <time datetime="2026-11-04">2026 / 11 / 04</time>
+            <h4>十城线下创作局完成，共 320 位创作者参与</h4>
+            <p>本轮城市包括成都、杭州、西安、厦门等地，现场作品已归档至官方专题页，可下载活动手册。</p>
+          </div>
+          <div class="dly-update">
+            <time datetime="2026-10-27">2026 / 10 / 27</time>
+            <h4>平台内容审核细则更新公告</h4>
+            <p>新增对 AI 生成素材的标注要求，涉及生成内容的作品需在提交时勾选相应说明，细则全文见帮助中心。</p>
+          </div>
+        </div>
+
+        <div class="dly-partners">
+          <div class="dly-partner"><i style="background:#f59e0b">光</i> 光影器材实验室</div>
+          <div class="dly-partner"><i style="background:#38bdf8">城</i> 城市文化基金会</div>
+          <div class="dly-partner"><i style="background:#a3e635">胶</i> 胶片复兴计划</div>
+          <div class="dly-partner"><i style="background:#c084fc">声</i> 声音设计工作室</div>
+          <div class="dly-partner"><i style="background:#fb7185">校</i> 传媒学院创作基地</div>
+          <div class="dly-partner"><i style="background:#2dd4bf">影</i> 独立影像放映联盟</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="dly-section dly-section-alt" id="dly-faq">
+    <div class="dly-container">
+      <div class="dly-sec-head" style="justify-content:center;text-align:center">
+        <div>
+          <span class="dly-kicker">Help Center</span>
+          <h2>常见问题<span>帮助中心</span></h2>
+          <p style="margin:8px auto 0">关于投稿、评审、版权与合作的常见疑问，点击展开查看说明。</p>
+        </div>
+      </div>
+
+      <div class="dly-faq">
+        <details open>
+          <summary>参与每日大赛需要付费吗？</summary>
+          <p>不需要。命题投稿、评审反馈与新人榜展示全部免费，平台不向创作者收取报名费用。部分线下创作局涉及场地与设备成本，会在报名页提前列明明细。</p>
+        </details>
+        <details>
+          <summary>一条作品可以同时投多个命题吗？</summary>
+          <p>同一作品只能投递一个命题，重复投递会被系统拦截。若作品在往期已获得奖项，不再参与当期评选，但仍可作为展示内容保留在个人档案页。</p>
+        </details>
+        <details>
+          <summary>作品版权归谁所有？</summary>
+          <p>版权始终归创作者所有。平台仅在作品页面展示与官方宣传专题中使用，且需经创作者授权。商业合作由平台撮合，收益分配比例在合作前书面确认，创作者拥有最终决定权。</p>
+        </details>
+        <details>
+          <summary>评审不认可我的作品怎么办？</summary>
+          <p>每期结果公示期为三天，可在作品页提交复核申请并说明理由，评审团会给出书面回复。我们也鼓励把评审意见当作一次免费的创作反馈，很多创作者会据此重剪后再投下一期。</p>
+        </details>
+        <details>
+          <summary>可以使用 AI 生成素材吗？</summary>
+          <p>可以，但必须在投稿时勾选 AI 素材说明，并标注使用范围。完全由 AI 生成的影像不参与竞技排名，但可在「实验影像」专区展示，以便观众了解技术边界。</p>
+        </details>
+        <details>
+          <summary>如何申请成为签约创作者？</summary>
+          <p>连续三期入围或在季度赛获得名次后，可在个人中心提交签约申请。审核重点包括作品稳定性、原创合规记录与合作配合度，通常七个工作日内回复。</p>
+        </details>
+        <details>
+          <summary>企业可以合作命题或品牌赛道吗？</summary>
+          <p>可以。我们提供命题定制、品牌赛道、创作者内容共创与线下放映等合作形式，具体方案可在联系页面提交需求，工作人员会在两个工作日内对接。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 投稿 / 联系 CTA ===== -->
+  <section class="dly-section" id="dly-contact">
+    <div class="dly-container">
+      <div class="dly-cta-band">
+        <div>
+          <h2>把你的下一条作品，交给一个认真对待它的平台</h2>
+          <p>每日大赛官方网站长期开放命题投稿与创作者入驻申请，也欢迎企业与品牌共建赛事专题。无论是第一次按下录制键，还是已经拍了十年，这里都留了一个位置。</p>
+        </div>
+        <div class="dly-cta-actions">
+          <button class="dly-btn dly-btn-primary" type="button" data-dly-modal="submit">立即投稿 / 报名</button>
+          <button class="dly-btn dly-btn-ghost" type="button" data-dly-modal="contact">联系合作</button>
+          <button class="dly-btn dly-btn-ghost" type="button" data-dly-share>分享本站</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="dly-footer">
+  <div class="dly-container">
+    <div class="dly-footer-grid">
+      <div>
+        <div class="dly-footer-brand">
+          <span class="dly-logo-mark">每</span>
+          <span class="dly-logo-text">每日大赛<small>DAILY CONTEST</small></span>
+        </div>
+        <p>每日大赛官方网站 · 专注影像命题创作与创作者竞技的内容平台。以专业评审、公开榜单与持续运营，为企业与创作者搭建高品质内容生态。</p>
+        <p style="margin-top:10px;color:#8c9cb3">持续运营中 · 官方发布 · 原创正版</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="#dly-focus">焦点赛事</a></li>
+          <li><a href="#dly-videos">今日视频流</a></li>
+          <li><a href="#dly-topics">专题企划</a></li>
+          <li><a href="#dly-creators">创作者矩阵</a></li>
+          <li><a href="#dly-rank">热度榜与口碑</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>参与方式</h4>
+        <ul>
+          <li><a href="#dly-contact">投稿入口</a></li>
+          <li><a href="#dly-faq">投稿指南</a></li>
+          <li><a href="#dly-updates">官方动态</a></li>
+          <li><a href="#dly-tools">创作工具</a></li>
+          <li><a href="#dly-contact">企业合作</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系我们</h4>
+        <p>内容合作：brand@dailycontest.example</p>
+        <p>创作者支持：creator@dailycontest.example</p>
+        <p>工作时间：周一至周五 10:00 - 19:00</p>
+        <p style="margin-top:8px">地址：城市影像创作基地 B 座 3 层</p>
+      </div>
+    </div>
+    <div class="dly-footer-bottom">
+      <span>© 2026 每日大赛 版权所有 · 官方网站 · 内容生态持续建设中</span>
+      <span>品牌备案信息：影像内容服务平台 · 备案编号公示于站内公告</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 通用弹窗 ===== -->
+<div class="dly-modal-mask" id="dlyModalMask" role="dialog" aria-modal="true" aria-labelledby="dlyModalTitle">
+  <div class="dly-modal">
+    <h3 id="dlyModalTitle">立即投稿</h3>
+    <p class="dly-modal-sub" id="dlyModalSub">填写基本信息，内容团队会在一个工作日内与你确认命题与档期。</p>
+    <form id="dlyModalForm">
+      <div class="dly-field" id="dlyFieldName">
+        <label for="dlyInputName">称呼 / 创作者名</label>
+        <input id="dlyInputName" type="text" placeholder="例如：林间取景器" required>
+      </div>
+      <div class="dly-field" id="dlyFieldContact">
+        <label for="dlyInputContact">联系方式</label>
+        <input id="dlyInputContact" type="text" placeholder="邮箱或手机号" required>
+      </div>
+      <div class="dly-field" id="dlyFieldType">
+        <label for="dlyInputType">参与类型</label>
+        <select id="dlyInputType">
+          <option>命题投稿</option>
+          <option>创作者入驻</option>
+          <option>品牌赛道合作</option>
+          <option>内容授权与转载</option>
+        </select>
+      </div>
+      <div class="dly-field" id="dlyFieldNote">
+        <label for="dlyInputNote">补充说明</label>
+        <textarea id="dlyInputNote" placeholder="简单描述你的作品方向、拍摄周期或合作需求"></textarea>
+      </div>
+      <div class="dly-modal-actions">
+        <button class="dly-btn dly-btn-ghost" type="button" data-dly-close>取消</button>
+        <button class="dly-btn dly-btn-primary" type="submit">提交信息</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="dly-toast" id="dlyToast" role="status" aria-live="polite"></div>
+<button class="dly-top" id="dlyTopBtn" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 移动端导航 ---------- */
+  var burger = document.getElementById('dlyBurger');
+  var nav = document.getElementById('dlyNav');
+  if (burger && nav) {
+    burger.addEventListener('click', function(){
+      var open = nav.classList.toggle('dly-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.textContent = open ? '✕' : '☰';
+    });
+    nav.addEventListener('click', function(e){
+      if (e.target.tagName === 'A' && window.innerWidth <= 820) {
+        nav.classList.remove('dly-open');
+        burger.setAttribute('aria-expanded','false');
+        burger.textContent = '☰';
+      }
+    });
+  }
+
+  /* ---------- Toast ---------- */
+  var toast = document.getElementById('dlyToast');
+  var toastTimer = null;
+  function showToast(msg){
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('dly-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('dly-show'); }, 2400);
+  }
+
+  /* ---------- 搜索反馈 ---------- */
+  var searchInput = document.getElementById('dlySearchInput');
+  var searchBtn = document.getElementById('dlySearchBtn');
+  var searchTip = document.getElementById('dlySearchTip');
+  var hotWords = ['城市呼吸','夜景测评','跟拍教程','独立剪辑师','末班地铁','创作者入驻'];
+
+  function doSearch(){
+    if (!searchInput || !searchTip) return;
+    var q = (searchInput.value || '').trim();
+    if (!q) {
+      searchTip.innerHTML = '试试这些关键词：' + hotWords.map(function(w){ return '<b>' + w + '</b>'; }).join('、');
+      searchTip.classList.add('dly-show');
+      return;
+    }
+    var matched = hotWords.filter(function(w){ return w.indexOf(q) !== -1 || q.indexOf(w) !== -1; });
+    if (matched.length) {
+      searchTip.innerHTML = '找到与「<b>' + q + '</b>」相关的内容：' + matched.map(function(w){ return '<b>' + w + '</b>'; }).join('、') + '，可前往视频流查看。';
+    } else {
+      searchTip.innerHTML = '暂未匹配到「<b>' + q + '</b>」，已为你记录，可浏览今日视频流或查看专题企划。';
+    }
+    searchTip.classList.add('dly-show');
+  }
+  if (searchBtn) searchBtn.addEventListener('click', doSearch);
+  if (searchInput) {
+    searchInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); doSearch(); } });
+    searchInput.addEventListener('focus', function(){ searchTip.innerHTML = '热门搜索：' + hotWords.map(function(w){ return '<b>' + w + '</b>'; }).join('、'); searchTip.classList.add('dly-show'); });
+    document.addEventListener('click', function(e){
+      if (searchTip && !document.getElementById('dlySearch').contains(e.target)) searchTip.classList.remove('dly-show');
+    });
+  }
+
+  /* ---------- 标签筛选 ---------- */
+  var filterBar = document.getElementById('dlyFilterBar');
+  var videoGrid = document.getElementById('dlyVideoGrid');
+  if (filterBar && videoGrid) {
+    filterBar.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-dly-filter]');
+      if (!btn) return;
+      var val = btn.getAttribute('data-dly-filter');
+      filterBar.querySelectorAll('.dly-chip').forEach(function(c){ c.classList.remove('dly-on'); });
+      btn.classList.add('dly-on');
+      var cards = videoGrid.querySelectorAll('.dly-card');
+      var shown = 0;
+      cards.forEach(function(card){
+        var cat = card.getAttribute('data-dly-cat') || '';
+        var ok = (val === 'all') || cat === val;
+        card.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      });
+      showToast(val === 'all' ? '已显示全部视频' : '已筛选「' + btn.textContent.trim() + '」分类，共 ' + shown + ' 条');
+    });
+  }
+
+  /* ---------- 点赞 / 收藏 ---------- */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('[data-dly-like]');
+    if (likeBtn) {
+      var numEl = likeBtn.querySelector('span');
+      var num = parseInt((numEl.textContent || '0').replace(/[^\d]/g,''), 10) || 0;
+      if (likeBtn.classList.toggle('dly-liked')) {
+        num += 1;
+        numEl.textContent = num;
+        likeBtn.innerHTML = '♥ <span>' + num + '</span>';
+        showToast('已点赞，感谢支持原创');
+      } else {
+        num = Math.max(0, num - 1);
+        likeBtn.innerHTML = '♡ <span>' + num + '</span>';
+      }
+      return;
+    }
+    var favBtn = e.target.closest('[data-dly-fav]');
+    if (favBtn) {
+      if (favBtn.classList.toggle('dly-faved')) {
+        favBtn.textContent = '★ 已收藏';
+        showToast('已加入收藏，可在个人中心查看');
+      } else {
+        favBtn.textContent = '☆ 收藏';
+      }
+    }
+  });
+
+  /* ---------- 工具按钮 ---------- */
+  document.addEventListener('click', function(e){
+    var toolBtn = e.target.closest('[data-dly-tool]');
+    if (toolBtn) {
+      showToast('「' + toolBtn.getAttribute('data-dly-tool') + '」示例已准备，完整功能请登录创作者工作台');
+    }
+  });
+
+  /* ---------- 分享 ---------- */
+  document.addEventListener('click', function(e){
+    if (e.target.closest('[data-dly-share]')) {
+      var url = '';
+      try { url = window.location.protocol + '//' + ('x' === 'x' ? (document.location.origin || '') : ''); } catch(err) { url = ''; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(document.title).then(function(){
+          showToast('页面标题已复制，可粘贴分享给好友');
+        }).catch(function(){
+          showToast('分享链接已生成，可通过浏览器分享菜单发送');
+        });
+      } else {
+        showToast('分享链接已生成，可通过浏览器分享菜单发送');
+      }
+    }
+  });
+
+  /* ---------- 弹窗 ---------- */
+  var mask = document.getElementById('dlyModalMask');
+  var modalTitle = document.getElementById('dlyModalTitle');
+  var modalSub = document.getElementById('dlyModalSub');
+  var modalForm = document.getElementById('dlyModalForm');
+  var fieldName = document.getElementById('dlyFieldName');
+  var fieldContact = document.getElementById('dlyFieldContact');
+  var fieldType = document.getElementById('dlyFieldType');
+  var fieldNote = document.getElementById('dlyFieldNote');
+  var inputName = document.getElementById('dlyInputName');
+  var modalMode = 'submit';
+
+  function setFieldVisible(el, yes){
+    if (el) el.style.display = yes ? '' : 'none';
+  }
+
+  function openModal(mode, extra){
+    if (!mask) return;
+    modalMode = mode || 'submit';
+    if (modalMode === 'creator') {
+      var name = extra || '创作者';
+      modalTitle.textContent = name + ' · 创作者档案';
+      modalSub.textContent = '平台活跃创作者，作品以原创纪实与影像实验为主，长期参与每日命题。';
+      setFieldVisible(fieldName, false);
+      setFieldVisible(fieldContact, false);
+      setFieldVisible(fieldType, true);
+      setFieldVisible(fieldNote, true);
+      if (inputName) inputName.removeAttribute('required');
+      modalForm.querySelector('button[type="submit"]').textContent = '关注该创作者';
+    } else if (modalMode === 'contact') {
+      modalTitle.textContent = '联系合作';
+      modalSub.textContent = '品牌赛道、命题定制与内容共创，请留下需求，两个工作日内回复。';
+      setFieldVisible(fieldName, true);
+      setFieldVisible(fieldContact, true);
+      setFieldVisible(fieldType, true);
+      setFieldVisible(fieldNote, true);
+      if (inputName) inputName.setAttribute('required','required');
+      modalForm.querySelector('button[type="submit"]').textContent = '提交需求';
+    } else {
+      modalTitle.textContent = '立即投稿 / 报名';
+      modalSub.textContent = '填写基本信息，内容团队会在一个工作日内与你确认命题与档期。';
+      setFieldVisible(fieldName, true);
+      setFieldVisible(fieldContact, true);
+      setFieldVisible(fieldType, true);
+      setFieldVisible(fieldNote, true);
+      if (inputName) inputName.setAttribute('required','required');
+      modalForm.querySelector('button[type="submit"]').textContent = '提交信息';
+    }
+    mask.classList.add('dly-show');
+    document.body.classList.add('dly-modal-open');
+  }
+
+  function closeModal(){
+    if (!mask) return;
+    mask.classList.remove('dly-show');
+    document.body.classList.remove('dly-modal-open');
+  }
+
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-dly-modal]');
+    if (trigger) {
+      openModal(trigger.getAttribute('data-dly-modal'), trigger.getAttribute('data-dly-name'));
+    }
+    if (e.target.closest('[data-dly-close]')) closeModal();
+  });
+  if (mask) {
+    mask.addEventListener('click', function(e){ if (e.target === mask) closeModal(); });
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  if (modalForm) {
+    modalForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (modalMode === 'creator') {
+        showToast('已关注该创作者，新作品发布时会提醒你');
+        closeModal();
+        return;
+      }
+      var nameVal = inputName ? inputName.value.trim() : '';
+      var contact = document.getElementById('dlyInputContact');
+      var contactVal = contact ? contact.value.trim() : '';
+      if (!nameVal) { showToast('请填写称呼或创作者名'); return; }
+      if (!contactVal) { showToast('请填写联系方式'); return; }
+      showToast('信息已提交，我们会在一个工作日内与你确认');
+      modalForm.reset();
+      closeModal();
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var topBtn = document.getElementById('dlyTopBtn');
+  window.addEventListener('scroll', function(){
+    if (!topBtn) return;
+    if (window.scrollY > 520) topBtn.classList.add('dly-show');
+    else topBtn.classList.remove('dly-show');
+  }, { passive: true });
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ---------- 数字滚动 ---------- */
+  var counters = document.querySelectorAll('[data-dly-count]');
+  var counted = false;
+  function runCounters(){
+    if (counted) return;
+    counted = true;
+    counters.forEach(function(el){
+      var target = parseInt(el.getAttribute('data-dly-count'), 10) || 0;
+      var start = null;
+      var dur = 1100;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min(1, (ts - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var heroStats = document.querySelector('.dly-hero-stats');
+    if (heroStats) {
+      var ob = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if (en.isIntersecting) { runCounters(); ob.disconnect(); } });
+      }, { threshold: 0.3 });
+      ob.observe(heroStats);
+    }
+  } else {
+    runCounters();
+  }
+
+  /* ---------- 卡片悬停已由 CSS 处理，锚点平滑滚动由 CSS 处理 ---------- */
+})();
+</script>
+</body>
+                                         </html>
